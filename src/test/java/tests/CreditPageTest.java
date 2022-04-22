@@ -11,6 +11,7 @@ import pages.StartPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreditPageTest {
 
@@ -64,7 +65,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidNumberCard());
-        assertEquals(true, creditPage.waitNotificationWrongFormatVisible());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidMonth());
-        assertEquals(true, creditPage.waitNotificationWrongMonthVisible());
+        assertTrue(creditPage.waitNotificationWrongMonthVisible());
     }
 
     @Test
@@ -82,7 +83,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidOwnerCard());
-        assertEquals(true, creditPage.waitNotificationWrongOwnerVisible());
+        assertTrue(creditPage.waitNotificationWrongOwnerVisible());
     }
 
     @Test
@@ -91,7 +92,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidCvcCard());
-        assertEquals(true, creditPage.waitNotificationWrongCvcVisible());
+        assertTrue(creditPage.waitNotificationWrongCvcVisible());
     }
 
     @Test
@@ -100,7 +101,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getExpiredCard());
-        assertEquals(true, creditPage.waitNotificationCardExpiredVisible());
+        assertTrue(creditPage.waitNotificationCardExpiredVisible());
     }
 
     @Test
@@ -109,7 +110,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getWrongDateCard());
-        assertEquals(true, creditPage.waitNotificationWrongDateCardVisible());
+        assertTrue(creditPage.waitNotificationWrongDateCardVisible());
     }
 
     @Test
@@ -117,7 +118,7 @@ public class CreditPageTest {
     void shouldCreditPayEmptyFieldsCard() {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
-        assertEquals(true, creditPage.emptyFieldsWarnings());
+        assertTrue(creditPage.emptyFieldsWarnings());
     }
 
 }
