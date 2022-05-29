@@ -121,4 +121,85 @@ public class CreditPageTest {
         assertTrue(creditPage.emptyFieldsWarnings());
     }
 
+    @Test
+    @DisplayName("Кредит по неизвестной карте\"неопознанный номер карты\"")
+    void shouldCreditPayUnknownCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getFakeCard());
+        assertTrue(creditPage.waitNotificationFailedVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с отправкой пустого поля \"Номер карты\"")
+    void shouldCreditPayEmptyFieldCardNumber() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getEmptyCardNumber());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с отправкой пустого поля \"Месяц\"")
+    void shouldCreditPayEmptyFieldMonthCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getEmptyMonthCard());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с отправкой пустого поля \"Год\"")
+    void shouldCreditPayEmptyFieldYearCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getEmptyYearCard());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с отправкой пустого поля \"Владелец\"")
+    void shouldCreditPayEmptyFieldHolderCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getEmptyHolderCard());
+        assertTrue(creditPage.waitNotificationEmptyOwnerVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с отправкой пустого поля \"CVC/CVV\"")
+    void shouldCreditPayEmptyFieldCVCCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getEmptyCVCCard());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с несуществующим значением поля \"Месяц\"")
+    void shouldCreditPayNonexistentDateMonthCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getNonexistentMonth());
+        assertTrue(creditPage.waitNotificationWrongMonthVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с неверным форматом даты в поле \"Месяц\"")
+    void shouldCreditPayInvalidFormatDateMonthCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getInvalidFormatMonth());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с неверным форматом даты в поле \"Год\"")
+    void shouldCreditPayInvalidFormatDateYearCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getInvalidFormatYear());
+        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+    }
+
 }

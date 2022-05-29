@@ -14,7 +14,6 @@ compileTestJava.options.encoding = "UTF-8"
 
 
 allure {
-    autoconfigure = true
     version = '2.17.3'
     useJUnit5 {
         version = '2.17.3'
@@ -30,13 +29,13 @@ repositories {
 
 dependencies {
     testImplementation 'io.qameta.allure:allure-selenide:2.17.3'
-    testImplementation 'com.codeborne:selenide:6.3.5'
+    testImplementation 'com.codeborne:selenide:6.4.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-    testImplementation 'mysql:mysql-connector-java:8.0.28'
+    testImplementation 'mysql:mysql-connector-java:8.0.29'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
-    testImplementation 'com.codeborne:selenide:6.3.5'
-    testImplementation 'io.rest-assured:rest-assured:4.5.1'
+    testImplementation 'com.codeborne:selenide:6.4.0'
+    testImplementation 'io.rest-assured:rest-assured:5.0.1'
     testImplementation 'com.google.code.gson:gson:2.9.0'
     testImplementation 'org.slf4j:slf4j-simple:1.7.36'
 

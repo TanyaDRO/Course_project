@@ -51,8 +51,9 @@ public class CreditPage {
         cancelSuccessField.click();
     }
 
-    public void waitNotificationFailedVisible() {
+    public boolean waitNotificationFailedVisible() {
         failedOperation.shouldBe(visible, Duration.ofSeconds(10));
+        return failedOperation.shouldBe(visible).isDisplayed();
     }
 
     public boolean waitNotificationWrongFormatVisible() {
@@ -90,5 +91,10 @@ public class CreditPage {
         return wrongFormatError.shouldBe(visible).isDisplayed()
                 && fieldRequiredError.shouldBe(visible).isDisplayed();
 
+    }
+
+    public boolean waitNotificationEmptyOwnerVisible() {
+        var result = fieldRequiredError.shouldBe(visible, Duration.ofSeconds(10));
+        return result.isDisplayed();
     }
 }

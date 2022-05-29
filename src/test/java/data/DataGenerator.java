@@ -1,47 +1,184 @@
 package data;
 
+import com.github.javafaker.Faker;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 
 public class DataGenerator {
+    private static Faker fakerEn = new Faker(new Locale("en"));
+    private static Faker fakerRu = new Faker(new Locale("ru"));
+
+    private static String generateDate(int months, String formatPattern) {
+        return LocalDate.now().plusMonths(months).format(DateTimeFormatter.ofPattern(formatPattern));
+    }
+
+
     public static Card getApprovedCard() {
-        return new Card("1111 2222 3333 4444", "08", "22", "Card Holder", "999");
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(approvedCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
     }
 
     public static Card getDeclinedCard() {
-        return new Card("5555 6666 7777 8888", "08", "22", "Card Holder", "999");
+
+        var declinedCardNum = "5555 6666 7777 8888";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(declinedCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
     }
 
     public static Card getInvalidNumberCard() {
-        return new Card("1111 2222 3333 44", "08", "22", "Card Holder", "999");
+
+        var invalidCardNum = "1111 2222 3333 444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(invalidCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
     }
 
     public static Card getInvalidMonth() {
-        return new Card("1111 2222 3333 4444", "00", "22", "Card Holder", "999");
+
+        var validCardNum = "1111 2222 3333 4444";
+        var invalidCardMonth = "00";
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(validCardNum, invalidCardMonth, cardYear, holder, String.format("%03d", cvc));
     }
 
     public static Card getFakeCard() {
-        return new Card("1111 1111 1111 1111", "08", "22", "Card Holder", "999");
+
+        var fakeCardNum = fakerEn.business().creditCardNumber();
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(fakeCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
     }
 
     public static Card getInvalidOwnerCard() {
-        return new Card("1111 2222 3333 4444", "08", "22", "123456789Йцукенгшщзхъ!\"№;%:?*()123456789Йцукенгшщзхъ!\"№;%:?*()", "999");
+
+        var validCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var invalidHolder = "123456789Йцукенгшщзхъ!\"№;%:?*()123456789Йцукенгшщзхъ!\"№;%:?*()";
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(validCardNum, cardMonth, cardYear, invalidHolder, String.format("%03d", cvc));
     }
 
     public static Card getInvalidCvcCard() {
-        return new Card("1111 2222 3333 4444", "08", "22", "Card Holder", "99");
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var invalidCvc = "99";
+        return new Card(approvedCardNum, cardMonth, cardYear, holder, invalidCvc);
     }
 
     public static Card getExpiredCard() {
 
+        var approvedCardNum = "1111 2222 3333 4444";
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
         var date = LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM.yy"));
         var strings = date.split("\\.");
-        return new Card("1111 2222 3333 4444", strings[0], strings[1], "Card Holder", "999");
+        return new Card(approvedCardNum, strings[0], strings[1], holder, String.format("%03d", cvc));
     }
+
     public static Card getWrongDateCard() {
 
+        var approvedCardNum = "1111 2222 3333 4444";
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
         var date = LocalDate.now().plusYears(6).format(DateTimeFormatter.ofPattern("MM.yy"));
         var strings = date.split("\\.");
-        return new Card("1111 2222 3333 4444", strings[0], strings[1], "Card Holder", "999");
+        return new Card(approvedCardNum, strings[0], strings[1], holder, String.format("%03d", cvc));
+    }
+
+    public static Card getEmptyCardNumber() {
+
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card("", cardMonth, cardYear, holder, String.format("%03d", cvc));
+    }
+
+    public static Card getEmptyMonthCard() {
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(approvedCardNum, "", cardYear, holder, String.format("%03d", cvc));
+    }
+
+    public static Card getEmptyYearCard() {
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(approvedCardNum, cardMonth, "", holder, String.format("%03d", cvc));
+    }
+
+    public static Card getEmptyHolderCard() {
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(approvedCardNum, cardMonth, cardYear, "", String.format("%03d", cvc));
+    }
+
+    public static Card getEmptyCVCCard() {
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        return new Card(approvedCardNum, cardMonth, cardYear, holder, "");
+    }
+
+    public static Card getNonexistentMonth() {
+
+        var validCardNum = "1111 2222 3333 4444";
+        var invalidCardMonth = "13";
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(validCardNum, invalidCardMonth, cardYear, holder, String.format("%03d", cvc));
+    }
+
+    public static Card getInvalidFormatMonth() {
+
+        var validCardNum = "1111 2222 3333 4444";
+        var invalidCardMonth = "1";
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(validCardNum, invalidCardMonth, cardYear, holder, String.format("%03d", cvc));
+    }
+
+    public static Card getInvalidFormatYear() {
+
+        var validCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = "1";
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(validCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
     }
 }
+
