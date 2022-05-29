@@ -18,9 +18,9 @@
 
 #### При подключении к СУБД MySQL
 
-![Gradle отчёт](https://prnt.sc/0g5hLUXoQgqT "Gradle отчёт")
+[Gradle отчёт](https://prnt.sc/0g5hLUXoQgqT)
 
-![AllureReport отчёт](https://prnt.sc/vSM2rEgidAzh "AllureReport отчёт")
+[AllureReport отчёт](https://prnt.sc/vSM2rEgidAzh "AllureReport отчёт")
 
 * 16 - успешных, что составляет 88.88%
 * 3 - не прошло, что составляет 11,11%
