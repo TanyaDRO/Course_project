@@ -51,50 +51,45 @@ public class CreditPage {
         cancelSuccessField.click();
     }
 
-    public boolean waitNotificationFailedVisible() {
+    public void waitNotificationFailedVisible() {
         failedOperation.shouldBe(visible, Duration.ofSeconds(10));
-        return failedOperation.shouldBe(visible).isDisplayed();
     }
 
-    public boolean waitNotificationWrongFormatVisible() {
-        var result = wrongFormatError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationWrongFormatVisible() {
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(10));
     }
 
-    public boolean waitNotificationWrongMonthVisible() {
-        var result = validityError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationWrongMonthVisible() {
+        validityError.shouldBe(visible, Duration.ofSeconds(10));
     }
 
-    public boolean waitNotificationWrongOwnerVisible() {
-        var result = wrongFormatError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationWrongOwnerVisible() {
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(10));
     }
 
-    public boolean waitNotificationWrongCvcVisible() {
-        var result = wrongFormatError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationWrongCvcVisible() {
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(10));
     }
 
-    public boolean waitNotificationCardExpiredVisible() {
-        var result = validityError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationCardExpiredVisible() {
+        validityError.shouldBe(visible, Duration.ofSeconds(10));
     }
 
-    public boolean waitNotificationWrongDateCardVisible() {
-        var result = validityError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationWrongDateCardVisible() {
+        validityError.shouldBe(visible, Duration.ofSeconds(10));
     }
 
     public boolean emptyFieldsWarnings() {
         continueButton.click();
         return wrongFormatError.shouldBe(visible).isDisplayed()
                 && fieldRequiredError.shouldBe(visible).isDisplayed();
-
     }
 
-    public boolean waitNotificationEmptyOwnerVisible() {
-        var result = fieldRequiredError.shouldBe(visible, Duration.ofSeconds(10));
-        return result.isDisplayed();
+    public void waitNotificationEmptyOwnerVisible() {
+        fieldRequiredError.shouldBe(visible, Duration.ofSeconds(10));
+    }
+
+    public void waitNotificationExpirationDateExpired(){
+        cardExpiredError.shouldBe(visible, Duration.ofSeconds(10));
     }
 }

@@ -180,5 +180,35 @@ public class DataGenerator {
         var cvc = (int) (Math.random() * 1000);
         return new Card(validCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
     }
+
+    public static Card getZerosNumberCard() {
+
+        var zerosCardNum = "0000 0000 0000 0000";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(zerosCardNum, cardMonth, cardYear, holder, String.format("%03d", cvc));
+    }
+
+    public static Card getZerosInYear() {
+
+        var validCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var zerosYear = "00";
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var cvc = (int) (Math.random() * 1000);
+        return new Card(validCardNum, cardMonth, zerosYear, holder, String.format("%03d", cvc));
+    }
+
+    public static Card getZerosInCvcCard() {
+
+        var approvedCardNum = "1111 2222 3333 4444";
+        var cardMonth = generateDate(3, "MM");
+        var cardYear = generateDate(3, "yy");
+        var holder = fakerEn.name().firstName() + " " + fakerEn.name().lastName();
+        var zerosCvc = "000";
+        return new Card(approvedCardNum, cardMonth, cardYear, holder, zerosCvc);
+    }
 }
 

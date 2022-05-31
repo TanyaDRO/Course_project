@@ -65,7 +65,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidNumberCard());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
     @Test
@@ -74,7 +74,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidMonth());
-        assertTrue(creditPage.waitNotificationWrongMonthVisible());
+        creditPage.waitNotificationWrongMonthVisible();
     }
 
     @Test
@@ -83,7 +83,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidOwnerCard());
-        assertTrue(creditPage.waitNotificationWrongOwnerVisible());
+        creditPage.waitNotificationWrongOwnerVisible();
     }
 
     @Test
@@ -92,7 +92,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidCvcCard());
-        assertTrue(creditPage.waitNotificationWrongCvcVisible());
+        creditPage.waitNotificationWrongCvcVisible();
     }
 
     @Test
@@ -101,7 +101,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getExpiredCard());
-        assertTrue(creditPage.waitNotificationCardExpiredVisible());
+        creditPage.waitNotificationCardExpiredVisible();
     }
 
     @Test
@@ -110,7 +110,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getWrongDateCard());
-        assertTrue(creditPage.waitNotificationWrongDateCardVisible());
+        creditPage.waitNotificationWrongDateCardVisible();
     }
 
     @Test
@@ -127,7 +127,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getFakeCard());
-        assertTrue(creditPage.waitNotificationFailedVisible());
+        creditPage.waitNotificationFailedVisible();
     }
 
     @Test
@@ -136,7 +136,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getEmptyCardNumber());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
     @Test
@@ -145,7 +145,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getEmptyMonthCard());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
     @Test
@@ -154,7 +154,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getEmptyYearCard());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
     @Test
@@ -163,7 +163,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getEmptyHolderCard());
-        assertTrue(creditPage.waitNotificationEmptyOwnerVisible());
+        creditPage.waitNotificationEmptyOwnerVisible();
     }
 
     @Test
@@ -172,7 +172,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getEmptyCVCCard());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
     @Test
@@ -181,7 +181,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getNonexistentMonth());
-        assertTrue(creditPage.waitNotificationWrongMonthVisible());
+        creditPage.waitNotificationWrongMonthVisible();
     }
 
     @Test
@@ -190,7 +190,7 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidFormatMonth());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
     @Test
@@ -199,7 +199,33 @@ public class CreditPageTest {
         StartPage startPage = new StartPage();
         CreditPage creditPage = startPage.byCredit();
         creditPage.fillInTheFields(DataGenerator.getInvalidFormatYear());
-        assertTrue(creditPage.waitNotificationWrongFormatVisible());
+        creditPage.waitNotificationWrongFormatVisible();
     }
 
+    @Test
+    @DisplayName("Кредит по данным карты с нулями в поле \"Номер карты\"")
+    void shouldCreditPayZerosInCardNumber() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getZerosNumberCard());
+        creditPage.waitNotificationFailedVisible();
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с нулями в поле \"Год\"")
+    void shouldCreditPayZerosInYearCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getZerosInYear());
+        creditPage.waitNotificationExpirationDateExpired();
+    }
+
+    @Test
+    @DisplayName("Кредит по данным карты с нулями в поле \"CVC/CVV\"")
+    void shouldCreditPayZerosInCvcCard() {
+        StartPage startPage = new StartPage();
+        CreditPage creditPage = startPage.byCredit();
+        creditPage.fillInTheFields(DataGenerator.getZerosInCvcCard());
+        creditPage.waitNotificationFailedVisible();
+    }
 }
