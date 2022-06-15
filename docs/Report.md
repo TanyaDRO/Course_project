@@ -18,9 +18,9 @@
 
 #### При подключении к СУБД MySQL
 
-[Gradle отчёт](https://prnt.sc/FXEV134ds8NW)
+<img width="1007" alt="Screenshot_14" src="https://user-images.githubusercontent.com/88894698/173922455-8406261b-5e10-4f8f-9a18-cb02c5629cea.png">
 
-[AllureReport отчёт](https://prnt.sc/W2Z_mFvE2PBF)
+<img width="1251" alt="Screenshot_15" src="https://user-images.githubusercontent.com/88894698/173922516-40646ade-aad6-4cac-88ee-e12290974b53.png">
 
 * 18 - успешных, что составляет 85.71%
 * 3 - не прошло, что составляет 14,28%
