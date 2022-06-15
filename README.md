@@ -22,3 +22,8 @@
 - `./gradlew allureServe` – открывает отчёт в браузере
 
 7. после окончания тестов завершить работу приложения, и остановить контейнеры командой `docker-compose down`
+
+## Документация
+1. [План автоматизации тестирования](https://github.com/TanyaDRO/Course_project/blob/master/docs/Plan.md)
+2. [Отчёт по итогам автоматизированного тестирования](https://github.com/TanyaDRO/Course_project/blob/master/docs/Report.md)
+3. [Отчёт по итогам автоматизации](https://github.com/TanyaDRO/Course_project/blob/master/docs/Summary.md)
